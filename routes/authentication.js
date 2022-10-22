@@ -1,31 +1,12 @@
 const express = require('express');
-const Info = require('../models/infoModel');
+const { register, login } = require('../controllers/infoController');
 
 const router = express.Router();
 
-// Post authentication
-router.post('/', async (req, res) => {
-    const {username, name, email, phone, city, dob, password} = req.body;
-    try {
-        const info = await Info.create({username, name, email, phone, city, dob, password});
-        res.status(200).json(info);
-    } catch(error) {
-        res.status(400).json({error: error.message});
-    }
-});
+// register
+router.post('/', register);
 
-router.post('/login', async (req, res) => {
-    const {username, password} = req.body;
-    try {
-        const info = await Info.findOne({username, password});
-        if (!info) {
-            res.status(400).json({error: "not found"});
-        } else {
-            res.status(200).json(info);
-        }
-    } catch(error) {
-        res.status(400).json({error: error.message});
-    }
-});
+// login
+router.post('/login', login);
 
 module.exports = router;
