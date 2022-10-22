@@ -37,9 +37,9 @@ const infoSchema = new Schema({
             description: String,
             startDate: Date,
             endDate: Date,
-            Category: String
+            category: String
         }
     ]
-})
+});
 
 module.exports = mongoose.model('info', infoSchema);
