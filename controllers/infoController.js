@@ -18,7 +18,7 @@ const login = async (req, res) => {
         if (!info) {
             res.status(400).json({error: "not found"});
         } else {
-            res.redirect(`/project/${username}`);
+            res.status(200).json(info);
         }
     } catch(error) {
         res.status(400).json({error: error.message});
@@ -37,9 +37,9 @@ const getProjects = async (req, res) => {
 
 const postProject = async (req, res) => {
     const { user } = req.params;
-    const { name, description, startDate, endDate, category } = req.body;
+    const { projectName, description, startDate, endDate, category } = req.body;
     const project = {
-        name,
+        projectName,
         description,
         startDate,
         endDate,

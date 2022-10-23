@@ -33,7 +33,7 @@ const infoSchema = new Schema({
     },
     projects: [
         {
-            name: String,
+            projectName: String,
             description: String,
             startDate: Date,
             endDate: Date,
